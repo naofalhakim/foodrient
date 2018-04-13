@@ -37,7 +37,7 @@ public class ResepAdapter extends RecyclerView.Adapter<ResepAdapter.Holderview>{
     @Override
     public void onBindViewHolder(final Holderview holder, final int position) {
         holder.v_namaResep.setText(productlist.get(position).getNamaResep());
-        holder.v_namaKotaResep.setText(productlist.get(position).getKotaResep());
+        holder.v_hargaResep.setText(productlist.get(position).getKotaResep());
         holder.v_detailResep.setText(productlist.get(position).getDetailResep());
         holder.v_imageResep.setImageResource(productlist.get(position).getImageResep());
 
@@ -68,7 +68,7 @@ public class ResepAdapter extends RecyclerView.Adapter<ResepAdapter.Holderview>{
 
     public class Holderview extends RecyclerView.ViewHolder{
         TextView v_namaResep;
-        TextView v_namaKotaResep;
+        TextView v_hargaResep;
         TextView v_detailResep;
         ImageView v_imageResep;
 
@@ -76,8 +76,8 @@ public class ResepAdapter extends RecyclerView.Adapter<ResepAdapter.Holderview>{
             super(itemview);
 //            itemview.setOnClickListener(this);
             v_namaResep=(TextView) itemview.findViewById(R.id.namaResepItem);
-            v_namaKotaResep=(TextView) itemview.findViewById(R.id.kotaResepItem);
-            v_detailResep=(TextView) itemview.findViewById(R.id.detailResepItem);
+            v_hargaResep=(TextView) itemview.findViewById(R.id.harga);
+            v_detailResep=(TextView) itemview.findViewById(R.id.harga);
             v_imageResep=(ImageView) itemview.findViewById(R.id.imageResepItem);
         }
 

@@ -28,11 +28,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
+        android:orientation="vertical"
         android:layout_below="@+id/imageResepItem">
 
         <TextView
             android:id="@+id/namaResepItem"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="7"
             android:textSize="14sp"
@@ -41,31 +42,26 @@
             />
 
         <TextView
-            android:layout_width="0dp"
+            android:id="@+id/harga"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Khas"
-            android:textSize="12sp"/>
-
-        <TextView
-            android:id="@+id/kotaResepItem"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="Yogyakarta"
+            android:layout_weight="7"
+            android:textSize="16sp"
+            android:text="Kikil Pedas Manis"
             android:textStyle="bold"
-            android:textSize="12sp"/>
+            />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/detailResepItem"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:textSize="13sp"
-        android:layout_below="@+id/nama"
-        android:text="Bawang putih, bawang bombai, sere, kecap manis, garam, tomat, gula merah, bawang merah ... "/>
+        <RatingBar
+            android:id="@+id/ratng_makanan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nama"
+            android:scaleX="0.4"
+            android:scaleY="0.4"
+            android:numStars="5"
+            />
 
     </RelativeLayout>
 

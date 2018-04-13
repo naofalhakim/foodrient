@@ -8,48 +8,48 @@
     android:background="@color/white"
     tools:context="com.example.miafandi.foody.LoginActivity">
 
-    <ImageView
-        android:id="@+id/logo_foody"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        app:srcCompat="@drawable/login_logo" />
-
     <LinearLayout
         android:id="@+id/layoutDots"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/logo_foody"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
         android:orientation="vertical"
+        android:layout_marginLeft="30dp"
         >
+
+    <ImageView
+       android:id="@+id/logo_foody"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentTop="true"
+       android:layout_marginTop="25dp"
+       app:srcCompat="@drawable/login_log" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:text="Healthy life"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/commandColor"
+        android:textColor="@color/colorPrimary"
         android:textSize="30dp"
         android:textStyle="bold"
-        android:text="Solusi tepat"/>
+        android:text="become"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/commandColor"
+        android:textColor="@color/colorPrimary"
         android:textSize="30dp"
         android:textStyle="bold"
-        android:text="lepas rindu"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/commandColor"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:text="masakan rumahan"/>
+        android:text="easier"/>
+    </LinearLayout>
 
     <LinearLayout
+        android:layout_below="@+id/layoutDots"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@drawable/login_background"
@@ -84,8 +84,6 @@
             android:background="@drawable/btn_login"
             android:elevation="15dp"
             />
-    </LinearLayout>
-
     </LinearLayout>
 
     <LinearLayout

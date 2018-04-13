@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#ff952b</color>
+    <color name="colorPrimaryDark">#ff952b</color>
     <color name="colorAccent">#69789e</color>
     
     <color name="colorDefault">#9EB3DD</color>
     <color name="colorFont">#8B93A9</color>
     <color name="white">#ffffff</color>
-    <color name="commandColor">#465476</color>
+    <color name="commandColor">#ff952b</color>
     <color name="commandColorFont">#243151</color>
     <color name="grey">#bfbfbf</color>
     <color name="greyPudar">#EDE8E8</color>
@@ -19,6 +19,7 @@
     <color name="gold_soft">#F5DB8C</color>
     <color name="black">#000</color>
     <color name="etBlue">#3bceae</color>
+    <color name="softOrange">#feb46d</color>
 
 
 
