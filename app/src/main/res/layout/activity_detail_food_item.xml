@@ -14,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageResep"
+            android:id="@+id/imageDetailFood"
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:scaleType="centerCrop"
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@+id/imageResep"
+            android:layout_below="@+id/imageDetailFood"
             android:background="@color/white"
             android:padding="10dp">
                 <LinearLayout
@@ -45,7 +45,7 @@
                         android:id="@+id/detailFoodJarak"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0.9km | Jalan Buah Batu Dayeuhkolot"
+                        android:text="Informasi Komposisi Bahan : \n \t Mengandung Vitamin A, D, Asam Folat, Kalsium dan Mineral"
                         android:textSize="10dp"
                         android:textColor="@color/colorFont"/>
                 </LinearLayout>
@@ -114,28 +114,6 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
                     <TextView
-                        android:id="@+id/increment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12dp"
-                        android:text="+"
-                        android:padding="10px"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="-2dp"
-                        android:background="@drawable/white_grey_border_bottom"/>
-                    <TextView
-                        android:id="@+id/count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12dp"
-                        android:text="1"
-                        android:padding="10px"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="-2dp"/>
-
-                    <TextView
                         android:id="@+id/decrement"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -149,6 +127,28 @@
                         android:textColor="@color/white"
                         android:textSize="12dp"
                         android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:text="1"
+                        android:padding="10px"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="-2dp"/>
+                    <TextView
+                        android:id="@+id/increment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:text="+"
+                        android:padding="10px"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="-2dp"
+                        android:background="@drawable/white_grey_border_bottom"/>
+
                 </LinearLayout>
 
 
@@ -156,8 +156,8 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Tulis notes..."
-                android:textColorHint="@color/etBlue"
+                android:hint="Tambahkan Catatan"
+                android:textColorHint="@color/colorPrimaryDark"
                 android:textSize="14dp"
                 android:background="@android:color/transparent"/>
         </LinearLayout>
@@ -216,6 +216,20 @@
                     android:textStyle="bold"
                     android:layout_marginTop="-5dp"
                     android:layout_marginLeft="-4dp"
+                    android:scaleX="0.7"
+                    android:scaleY="0.7"
+                    />
+
+                <RadioButton
+                    android:id="@+id/gojek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GoJek"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginLeft="5dp"
                     android:scaleX="0.7"
                     android:scaleY="0.7"
                     />

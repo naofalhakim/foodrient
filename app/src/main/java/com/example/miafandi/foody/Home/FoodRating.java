@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.example.miafandi.foody.MainActivity;
@@ -14,6 +16,8 @@ import com.example.miafandi.foody.R;
 public class FoodRating extends AppCompatActivity {
 
     Button button;
+    ImageView imgRating;
+    RatingBar ratingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,12 @@ public class FoodRating extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         button = (Button) findViewById(R.id.submitRating);
+        imgRating = (ImageView) findViewById(R.id.ratingImage);
+        ratingBar = (RatingBar) findViewById(R.id.ratingBarRate);
+
+        Intent intent = getIntent();
+        imgRating.setImageResource(intent.getIntExtra("gambar",0));
+        ratingBar.setRating(intent.getIntExtra("bintang",0));
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

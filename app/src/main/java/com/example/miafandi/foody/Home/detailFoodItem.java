@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.miafandi.foody.R;
@@ -20,6 +21,9 @@ public class detailFoodItem extends AppCompatActivity {
     int hargaAsli;
     int kirim;
     Button button;
+
+    TextView detailFoodNama;
+    ImageView imageDetailFood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,17 @@ public class detailFoodItem extends AppCompatActivity {
         pesanTotal = (TextView) findViewById(R.id.pesanTotal);
         pesanTotalHarga = (TextView) findViewById(R.id.pesanTotalHarga);
         pesanKirim = (TextView) findViewById(R.id.pesanKirim);
+
+        detailFoodNama = (TextView) findViewById(R.id.detailFoodNama);
+        imageDetailFood = (ImageView) findViewById(R.id.imageDetailFood);
+
+        final Intent i = getIntent();
+        final String nama = i.getStringExtra("nama");
+        final int gambar = i.getIntExtra("gambar",0);
+        final int bintang = i.getIntExtra("bintang",0);
+        detailFoodNama.setText(nama);
+        imageDetailFood.setImageResource(gambar);
+
         add = (TextView) findViewById(R.id.increment);
         count = (TextView) findViewById(R.id.count);
         minus = (TextView) findViewById(R.id.decrement);
@@ -68,6 +83,10 @@ public class detailFoodItem extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(detailFoodItem.this,FoodRating.class);
+                intent.putExtra("nama",nama);
+                intent.putExtra("gambar",gambar);
+                intent.putExtra("bintang",bintang);
+
                 startActivity(intent);
             }
         });

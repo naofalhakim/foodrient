@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="4dp"
+    tools:context="com.example.miafandi.foody.Resep.DetailResepActivity">
+
+    <ImageView
+        android:id="@+id/imagePemasak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:background="@color/white"
+        android:src="@drawable/ic_profile"
+        android:layout_marginTop="8dp"
+        />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/imageMakanananItem"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                app:srcCompat="@drawable/grid4" />
+
+                <TextView
+                    android:id="@+id/namaMakananItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:textSize="14sp"
+                    android:text="Kikil Pedas Manis"
+                    android:textStyle="bold"
+                    android:layout_below="@id/imageMakanananItem"
+                    />
+
+                <TextView
+                    android:id="@+id/hargaMakanan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:textSize="16sp"
+                    android:text="Kikil Pedas Manis"
+                    android:textStyle="bold"
+                    android:layout_below="@id/namaMakananItem"
+                    />
+
+            <RatingBar
+                android:id="@+id/ratng_makanan"
+                style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/hargaMakanan"
+                android:numStars="5"
+                android:rating="5" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

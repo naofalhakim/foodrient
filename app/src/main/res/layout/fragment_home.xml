@@ -9,14 +9,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <android.support.design.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/main_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        <android.support.design.widget.CoordinatorLayout
+
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/MyAppbar"
@@ -47,11 +48,12 @@
                 <RelativeLayout
                     android:id="@+id/layout_top"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp">
+                    android:layout_height="220dp">
 
                     <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        >
 
                         <com.example.miafandi.foody.Home._sliders.SliderView
                             android:id="@+id/sliderView"
@@ -63,7 +65,8 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/bg_indicator"/>
+                        android:background="@drawable/bg_indicator"
+                        />
 
                     <LinearLayout
                         android:id="@+id/pagesContainer"
@@ -77,30 +80,68 @@
 
                 </RelativeLayout>
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/MyToolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
-                    app:popupTheme="@style/AppTheme.PopupOverly"/>
-
             </android.support.design.widget.CollapsingToolbarLayout>
-
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tabs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/commandColor"
-                app:layout_collapseMode="pin" />
 
         </android.support.design.widget.AppBarLayout>
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewPagerHome"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:elevation="3dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </android.support.design.widget.CoordinatorLayout>
+        <LinearLayout
+            android:layout_marginTop="-10dp"
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            >
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:src="@drawable/logo_putih"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="4dp"
+            android:id="@+id/filter"
+            android:layout_below="@id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            >
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:text="2 Makanan Ditemukan"
+                />
+
+            <ImageView
+                android:id="@+id/imgFilter"
+                android:layout_width="25dp"
+                android:layout_height="20dp"
+                android:src="@drawable/filter_list"
+                />
+
+            <TextView
+                android:id="@+id/txtFilter"
+                android:layout_weight="0.2"
+                android:layout_width="0dp"
+                android:layout_marginLeft="4dp"
+                android:layout_height="wrap_content"
+                android:text="Filter"
+                />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:padding="8dp"
+            android:id="@+id/recycleFilter"
+            android:layout_below="@id/filter"
+            android:layout_width="match_parent"
+            android:background="@color/greyPudar"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
     </RelativeLayout>
 </FrameLayout>

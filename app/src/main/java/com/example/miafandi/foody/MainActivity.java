@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
         mBuilder.setView(mView);
         final AlertDialog dialog = mBuilder.create();
-        dialog.show();
+//        dialog.show();
 
         radioGroup.setOnCheckedChangeListener(checkedChangeListener);
         btnSurvey.setOnClickListener(new View.OnClickListener() {

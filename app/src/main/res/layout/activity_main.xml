@@ -7,7 +7,15 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="com.example.miafandi.foody.MainActivity">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            >
 
+
+        </android.support.v7.widget.Toolbar>
 
         <FrameLayout
             android:id="@+id/content"

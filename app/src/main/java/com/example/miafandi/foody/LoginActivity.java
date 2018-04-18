@@ -106,45 +106,48 @@ public class LoginActivity extends AppCompatActivity {
     private void Login(final String email, final String password) {
         progressDialog.setMessage("Harap Menunggu");
         progressDialog.show();
-        stringRequest = new StringRequest(Request.Method.POST,
-                DatabaseConfig.LOGIN_USER,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        progressDialog.dismiss();
-                        Toast.makeText(LoginActivity.this,response,Toast.LENGTH_SHORT).show();
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            if(jsonObject.getInt("success") != 0){
-                                JSONArray jsonArray = jsonObject.getJSONArray("user");
-                                sessionUser.createUserSession(
-                                        jsonArray.getJSONObject(0).getString("ktp"),
-                                        jsonArray.getJSONObject(0).getString("nama"),
-                                        jsonArray.getJSONObject(0).getString("email"),
-                                        jsonArray.getJSONObject(0).getString("no_tlp"),
-                                        jsonArray.getJSONObject(0).getString("alamat")
-                                );
-                                startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                                finish();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> map = new HashMap<>();
-                map.put("email",email);
-                map.put("password",password);
-                return map;
-            }
-        };
-        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+        if(!email.equals("") && !password.equals("")){
+            startActivity(new Intent(this.getBaseContext(), MainActivity.class));
+        }
+//        stringRequest = new StringRequest(Request.Method.POST,
+//                DatabaseConfig.LOGIN_USER,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        progressDialog.dismiss();
+//                        Toast.makeText(LoginActivity.this,response,Toast.LENGTH_SHORT).show();
+//                        try {
+//                            JSONObject jsonObject = new JSONObject(response);
+//                            if(jsonObject.getInt("success") != 0){
+//                                JSONArray jsonArray = jsonObject.getJSONArray("user");
+//                                sessionUser.createUserSession(
+//                                        jsonArray.getJSONObject(0).getString("ktp"),
+//                                        jsonArray.getJSONObject(0).getString("nama"),
+//                                        jsonArray.getJSONObject(0).getString("email"),
+//                                        jsonArray.getJSONObject(0).getString("no_tlp"),
+//                                        jsonArray.getJSONObject(0).getString("alamat")
+//                                );
+//                                startActivity(new Intent(LoginActivity.this,MainActivity.class));
+//                                finish();
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//
+//            }
+//        }){
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String,String> map = new HashMap<>();
+//                map.put("email",email);
+//                map.put("password",password);
+//                return map;
+//            }
+//        };
+//        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
 }

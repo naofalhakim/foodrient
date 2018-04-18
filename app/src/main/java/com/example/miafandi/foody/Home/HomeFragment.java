@@ -1,25 +1,35 @@
 package com.example.miafandi.foody.Home;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.miafandi.foody.Adapter.MakananAdapter;
 import com.example.miafandi.foody.Home._sliders.FragmentSlider;
 import com.example.miafandi.foody.Home._sliders.SliderIndicator;
 import com.example.miafandi.foody.Home._sliders.SliderPagerAdapter;
 import com.example.miafandi.foody.Home._sliders.SliderView;
+import com.example.miafandi.foody.LoginActivity;
+import com.example.miafandi.foody.Model.Makanan;
 import com.example.miafandi.foody.R;
 
 import java.util.ArrayList;
@@ -29,16 +39,13 @@ public class HomeFragment extends Fragment {
     AppBarLayout Appbar;
     CollapsingToolbarLayout CoolToolbar;
     ImageView img;
-    Toolbar toolbar;
     Boolean ExpandedActionBar = true;
 
     //grid
-    ViewPager viewPager;
-    RecyclerView mRecycleView;
-    RecyclerView.LayoutManager mLayoutManager;
-    RecyclerView.Adapter mAdapter;
-    ViewPager viewPagerIn;
-    View rootView;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager reLayoutManager;
+    private List<Makanan> makananList;
+
     //Tab
     private static final int ACTIVITY_NUM = 0;
     private Context mContext = getActivity(); //gimana nih
@@ -49,6 +56,9 @@ public class HomeFragment extends Fragment {
 
     private SliderView sliderView;
     private LinearLayout mLinearLayout;
+
+    private TextView txtFilter;
+    private ImageView imgFilter;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -63,13 +73,23 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        toolbar = (Toolbar) rootView.findViewById(R.id.MyToolbar);
         Appbar = (AppBarLayout) rootView.findViewById(R.id.MyAppbar);
         CoolToolbar = (CollapsingToolbarLayout) rootView.findViewById(R.id.MyCollapseToolbar);
         img = (ImageView) rootView.findViewById(R.id.imageHeader);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recycleFilter);
+
+        txtFilter = (TextView) rootView.findViewById(R.id.txtFilter);
+        imgFilter = (ImageView) rootView.findViewById(R.id.imgFilter);
+
+        makananList = new ArrayList();
+        makananList.add(new Makanan("Salad Sayur Segar",12000,4,R.drawable.salad));
+        makananList.add(new Makanan("Kacang Hijau Dengan Susu Almond Tanpa Santan",12000,3,R.drawable.bubur));
+
+        reLayoutManager = new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(reLayoutManager);
+        recyclerView.setAdapter(new MakananAdapter(this.getContext(),makananList));
 
         Appbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
@@ -84,33 +104,67 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        ViewPager mViewPager = (ViewPager) rootView.findViewById(R.id.viewPagerHome);
-        ViewPagerAdapter mViewPagerAdapter = new ViewPagerAdapter(this.getActivity().getSupportFragmentManager());
-        mViewPagerAdapter.addFragment(BerandaFragment.newInstance(),"Beranda");
-        mViewPagerAdapter.addFragment(VotingFragment.newInstance(),"Voting");
-        mViewPagerAdapter.addFragment(CateringFragment.newInstance(),"Catering");
-        mViewPager.setAdapter(mViewPagerAdapter);
-
-        mViewPager.setCurrentItem(1);
-
-        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
-
-        //slider
         sliderView = (SliderView) rootView.findViewById(R.id.sliderView);
         mLinearLayout = (LinearLayout) rootView.findViewById(R.id.pagesContainer);
         setupSlider();
 
+        imgFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(rootView.getContext());
+                final View mView = getLayoutInflater().inflate(R.layout.activity_dialog_filter, null);
+
+                Button reset, filter;
+                TextView cancel;
+                final EditText etHarga, etPenyakit, etMakanan;
+
+                reset = (Button) mView.findViewById(R.id.btnReset);
+                filter = (Button) mView.findViewById(R.id.btnFilter);
+                cancel = (TextView) mView.findViewById(R.id.cancleFilter);
+
+                etHarga = (EditText) mView.findViewById(R.id.hargaFilter);
+                etMakanan = (EditText) mView.findViewById(R.id.jenisMasakanFilter);
+                etPenyakit = (EditText) mView.findViewById(R.id.jenisPenyakit);
+
+                mBuilder.setView(mView);
+                final AlertDialog dialog = mBuilder.create();
+                dialog.show();
+
+                reset.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        etHarga.setText("");
+                        etMakanan.setText("");
+                        etPenyakit.setText("");
+                    }
+                });
+
+                filter.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(mView.getContext(),"Filtered",Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+            }
+        });
         return rootView;
     }
 
     private void setupSlider() {
         sliderView.setDurationScroll(800);
         List<Fragment> fragments = new ArrayList<>();
-        fragments.add(FragmentSlider.newInstance("http://www.menucool.com/slider/prod/image-slider-1.jpg"));
-        fragments.add(FragmentSlider.newInstance("http://www.menucool.com/slider/prod/image-slider-2.jpg"));
-        fragments.add(FragmentSlider.newInstance("http://www.menucool.com/slider/prod/image-slider-3.jpg"));
-        fragments.add(FragmentSlider.newInstance("http://www.menucool.com/slider/prod/image-slider-4.jpg"));
+        fragments.add(FragmentSlider.newInstance("https://sehatjajanan.files.wordpress.com/2014/11/resep-masakan-sehat-5.jpg"));
+        fragments.add(FragmentSlider.newInstance("http://3.bp.blogspot.com/-MvTzW-vJalc/VPqcC_mV23I/AAAAAAAACug/JJZ2qSAOPMM/s1600/Resep%2BMasakan%2BSehat%2BSalad%2BSayur.jpg"));
+        fragments.add(FragmentSlider.newInstance("https://cdn1-a.production.liputan6.static6.com/medias/949669/big/021372800_1438999989-4573116519_9979df02cb_b.jpg"));
+        fragments.add(FragmentSlider.newInstance("https://cdns.klimg.com/vemale.com/headline/650x325/2014/02/resep-sehat-lumpia-sayur-segar-tanpa-goreng.jpg"));
 //        fragments.add(FragmentSlider.newInstance(R.drawable.borderbackground));
 
         mAdapterSlider = new SliderPagerAdapter(getFragmentManager(), fragments);

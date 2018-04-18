@@ -89,65 +89,67 @@ public class RegisterActivity extends AppCompatActivity {
             etNoTelp.setError("Nomor Telphone Wajib Diisi");
         }else if(email.equals("")){
             etEmail.setError("Email Wajib Diisi");
-        }else if(pass.equals("") || pass.equals(ppass2)){
+        }else if(pass.equals("")){
             etPassword.setError("Password Harus Benar");
         }else{
             progressDialog.setMessage("Tunggu Proses Pendaftarana");
             progressDialog.show();
-
-            StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                    DatabaseConfig.REGISTER_USER, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    progressDialog.dismiss();
-
-                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(RegisterActivity.this);
-                    View mView = getLayoutInflater().inflate(R.layout.activity_dialog_daftar, null);
-
-                    verifikasi_masuk = (TextView)mView.findViewById(R.id.verifikasi_login);
-                    verifikasi_hubungi = (TextView)mView.findViewById(R.id.verifikasi_hubungi);
-
-                    mBuilder.setView(mView);
-                    final AlertDialog dialog = mBuilder.create();
-                    dialog.show();
-
-                    verifikasi_masuk.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                             startActivity(intent);
-                        }
-                    });
 
-                    verifikasi_hubungi.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Toast.makeText(RegisterActivity.this,"send message to email",Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    progressDialog.dismiss();
-                    Toast.makeText(RegisterActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
-                }
-            }){
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String,String> params = new HashMap<>();
-                    params.put("ktp",noktp);
-                    params.put("password",pass);
-                    params.put("email",email);
-                    params.put("nama",nama);
-                    params.put("alamat",alamat);
-                    params.put("no_tlp",notelp);
-
-                    return params;
-                }
-            };
-            RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+//            StringRequest stringRequest = new StringRequest(Request.Method.POST,
+//                    DatabaseConfig.REGISTER_USER, new Response.Listener<String>() {
+//                @Override
+//                public void onResponse(String response) {
+//                    progressDialog.dismiss();
+//
+//                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(RegisterActivity.this);
+//                    View mView = getLayoutInflater().inflate(R.layout.activity_dialog_daftar, null);
+//
+//                    verifikasi_masuk = (TextView)mView.findViewById(R.id.verifikasi_login);
+//                    verifikasi_hubungi = (TextView)mView.findViewById(R.id.verifikasi_hubungi);
+//
+//                    mBuilder.setView(mView);
+//                    final AlertDialog dialog = mBuilder.create();
+//                    dialog.show();
+//
+//                    verifikasi_masuk.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+//                            startActivity(intent);
+//                        }
+//                    });
+//
+//                    verifikasi_hubungi.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            Toast.makeText(RegisterActivity.this,"send message to email",Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//
+//                }
+//            }, new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//                    progressDialog.dismiss();
+//                    Toast.makeText(RegisterActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
+//                }
+//            }){
+//                @Override
+//                protected Map<String, String> getParams() throws AuthFailureError {
+//                    Map<String,String> params = new HashMap<>();
+//                    params.put("ktp",noktp);
+//                    params.put("password",pass);
+//                    params.put("email",email);
+//                    params.put("nama",nama);
+//                    params.put("alamat",alamat);
+//                    params.put("no_tlp",notelp);
+//
+//                    return params;
+//                }
+//            };
+//            RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
         }
 
     }

@@ -18,7 +18,7 @@
     <item
         android:id="@+id/btmNavResep"
         android:icon="@drawable/ic_resep_foody"
-        android:title="Resep"
+        android:title="Info Bahan"
         android:iconTint="#435073">
     </item>
 
